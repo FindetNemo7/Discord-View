@@ -25,10 +25,10 @@ def get_discord_since_text(user):
     created_at = created_at.replace(tzinfo=None)
     now = datetime.datetime.now()
     discord_since = now - created_at
-    return f"{discord_since.days} Tagen"
+    return f"{discord_since.days} days"
 
 def get_month_name(month):
-    months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     return months[month - 1]
 
 @client.tree.command(name="view")
@@ -40,7 +40,7 @@ async def view(interaction: discord.Interaction, username: discord.User):
         timestamp=datetime.datetime.utcnow()
     )
 
-    embed.set_footer(text="Ressops", icon_url="https://i.ibb.co/8MqKrZ0/ressops.png")
+    embed.set_footer(text="Server-Name", icon_url="https://i.ibb.co/8MqKrZ0/ressops.png")
     embed.set_author(name =f"Informationen über {user.name}")
     embed.set_thumbnail(url=user.display_avatar.url)
   
@@ -52,13 +52,13 @@ async def view(interaction: discord.Interaction, username: discord.User):
     joined_at_parts[1] = get_month_name(int(joined_at_parts[1]))
     joined_at_str = " ".join(joined_at_parts)
   
-    embed.add_field(name="Mitglied seit", value=joined_at_str, inline=True)
+    embed.add_field(name="Member since", value=joined_at_str, inline=True)
     embed.add_field(name="", value="", inline=True)
   
-    embed.add_field(name="Nutzt Discord seit", value=get_discord_since_text(user), inline=True)
+    embed.add_field(name="Has been using discord since", value=get_discord_since_text(user), inline=True)
     embed.add_field(name="", value="", inline=False)
   
-    embed.add_field(name="Rollen", value=", ".join(role.name for role in user.roles if role.name != "@everyone"), inline=False)
+    embed.add_field(name="Roles", value=", ".join(role.name for role in user.roles if role.name != "@everyone"), inline=False)
     embed.add_field(name="", value="", inline=False)
     
     await interaction.response.send_message(embed=embed, ephemeral=True)
