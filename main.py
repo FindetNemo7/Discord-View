@@ -40,8 +40,8 @@ async def view(interaction: discord.Interaction, username: discord.User):
         timestamp=datetime.datetime.utcnow()
     )
 
-    embed.set_footer(text="Server-Name", icon_url="https://i.ibb.co/8MqKrZ0/ressops.png")
-    embed.set_author(name =f"Informationen über {user.name}")
+    embed.set_footer(text="your-server-name", icon_url="https://i.ibb.co/8MqKrZ0/ressops.png")
+    embed.set_author(name =f"information about {user.name}")
     embed.set_thumbnail(url=user.display_avatar.url)
   
     embed.add_field(name="Client-ID", value=user.id, inline=False)
